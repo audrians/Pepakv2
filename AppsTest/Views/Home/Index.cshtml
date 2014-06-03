@@ -1,0 +1,267 @@
+﻿@model AppsTest.UserDigipak
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Script Tutorials" />
+  <title>@ViewBag.Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- attach CSS styles -->
+  <link href="~/Content/baru/bootstrap.min.css" rel="stylesheet">
+  <link href="~/Content/baru/style.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!--  BODY PAGE CONTENT -->
+
+    <!-- navigation panel -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">DIGITAL PEPAK</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar-collapse-main">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#information">Information</a></li>
+            <li><a href="#google_map">Contact</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a data-toggle="modal" data-target="#myModal2" >Log In</a></li>
+            <li><a data-toggle="modal" data-target="#myModal" >Sign Up</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+     <!-- Modal Sign up -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel1">Create your account here!</h4>
+				</div>
+				  <div class="modal-body">
+				  <div class="container">
+					<div class="col-md-6">
+						<form class="form-signin" method="post" action="signup.php">
+                          <label class="form-label">Username</label>
+						  <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
+						  <label class="form-label">Password</label>
+						  <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required>
+						  <hr>
+						  <input class="btn btn-primary" type="submit" name="signup" value="Sign Up">
+						  <input class="btn btn-primary" type="submit" data-dismiss="modal" value="Cancel">
+						</form>
+					</div>
+				  </div>
+				</div>
+			  </div>
+            </div>
+          </div>
+
+    <!-- Modal Log In -->
+      <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Log In</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+				<div class="col-md-6">
+					@using (Html.BeginForm("Index","Home", FormMethod.Post))
+                    {
+                        //this  is for create form tag
+                        @Html.AntiForgeryToken()          // this is for prevent CSRF attack
+                        @Html.ValidationSummary(true)
+                        if (@ViewBag.Message != null)
+                        {
+                            <div style="border:1px solid red">
+                                @ViewBag.Message
+                            </div>
+                        }
+                        <table>
+                            <tr>
+                                <td>@Html.LabelFor(a=>a.Username)</td>
+                                <td>@Html.TextBoxFor(a=>a.Username)</td>
+                                <td>@Html.ValidationMessageFor(a=>a.Username)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(a=>a.Password)
+                                </td>
+                                <td>
+                                    @Html.PasswordFor(a=>a.Password)
+                                </td>
+                                <td>
+                                    @Html.ValidationMessageFor(a=>a.Password)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Login" />
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    }
+				</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- first section - Home -->
+    <div id="home" class="home">
+      <div class="text-vcenter">
+        <h1>Hello World</h1>
+        <h3>This is bootstrap-based layout</h3>
+        <a href="#about" class="btn btn-default btn-lg">Continue</a>
+      </div>
+    </div>
+    <!-- /first section -->
+
+    <!-- second section - About -->
+    <div id="about" class="pad-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <img src="images/logo.png" alt="" />
+          </div>
+          <div class="col-sm-6 text-center">
+            <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet.</h2>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed interdum metus et ligula venenatis, at rhoncus nisi molestie. Pellentesque porttitor elit suscipit massa laoreet metus.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /second section -->
+
+    <!-- third section - Services -->
+    <div id="sinau" class="pad-section">
+      <div class="container">
+        <h2 class="text-center">Ayok Sinau!</h2> <hr />
+        <div class="row text-center">
+          <div class="col-sm-3 col-xs-6">
+            <i class="glyphicon glyphicon-cloud"> </i>
+            <h4>@Html.ActionLink("Hanacaraka", null, "HanacarakaUser")</h4>
+            <p>Belajar Aksara Jawa</p>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <i class="glyphicon glyphicon-leaf"> </i>
+            <h4>Service 2</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <i class="glyphicon glyphicon-phone-alt"> </i>
+            <h4>Service 3</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <i class="glyphicon glyphicon-bullhorn"> </i>
+            <h4>Service 4</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <i class="glyphicon glyphicon-bullhorn"> </i>
+            <h4>Service 5</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <i class="glyphicon glyphicon-bullhorn"> </i>
+            <h4>Service 6</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <i class="glyphicon glyphicon-bullhorn"> </i>
+            <h4>Service 7</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <i class="glyphicon glyphicon-bullhorn"> </i>
+            <h4>Service 8</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /third section -->
+
+    <!-- fourth section - Information -->
+    <div id="information" class="pad-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2 class="panel-title">Additional information</h2>
+              </div>
+              <div class="panel-body lead">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam placerat, velit a fermentum fermentum, mi felis vehicula justo, a dapibus quam augue non massa. Duis euismod, augue et tempus consequat, lorem mauris porttitor quam, consequat ultricies mauris mi a metus. Phasellus congue, leo sed ultricies tristique, nunc libero tempor ligula, at varius mi nibh in nisi. Aliquam erat volutpat. Maecenas rhoncus, neque facilisis rhoncus tempus, elit ligula varius dui, quis amet.
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h2 class="panel-title">Additional information</h2>
+              </div>
+              <div class="panel-body lead">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam placerat, velit a fermentum fermentum, mi felis vehicula justo, a dapibus quam augue non massa. Duis euismod, augue et tempus consequat, lorem mauris porttitor quam, consequat ultricies mauris mi a metus. Phasellus congue, leo sed ultricies tristique, nunc libero tempor ligula, at varius mi nibh in nisi. Aliquam erat volutpat. Maecenas rhoncus, neque facilisis rhoncus tempus, elit ligula varius dui, quis amet.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /fourth section -->
+
+    <!-- fifth section -->
+    <div id="services" class="pad-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <h3>Parallax scrolling effect is in action</h3>
+            <h4>The next is the address on Google maps</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /fifth section -->
+
+    <!-- footer -->
+    <footer>
+      <hr />
+      <div class="container">
+        <p class="text-right">Copyright &copy; Your Company 2014</p>
+      </div>
+    </footer>
+    <!-- /footer -->
+
+    
+
+  <!-- attach JavaScripts -->
+  <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+  <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

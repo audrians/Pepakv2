@@ -1,0 +1,28 @@
+﻿@model IEnumerable<AppsTest.Hanacaraka>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-md-6">
+		  <div class="panel panel-default">
+					  <div class="panel-heading"><h4>HANACARAKA</h4></div>
+						<div class="panel-body">
+							<table class="table table-striped">
+							<thead>
+								<tr><th>Hanacaraka</th><th>Gambar</th></tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model) {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Aksara)
+                                        </td>
+                                        <td>
+                                            <img alt="Gambar" src= "@string.Format("{0}",item.GambarURL)" />
+                                        </td>
+                                    </tr>
+                                }
+							</tbody>
+							</table>
+						</div><!--/panel-body-->
+           </div><!--/panel-->
